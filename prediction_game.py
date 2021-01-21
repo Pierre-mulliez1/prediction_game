@@ -31,6 +31,10 @@ difficulty = intparse(input("Choose the type of game (1: Easy; 2: Difficult):"))
 while difficulty == "please enter a valid number":
     print(difficulty)
     difficulty = intparse(input("Choose the type of game (1: Easy; 2: Difficult):"))
+#check for value != 1 or 2
+while difficulty != 1 and difficulty != 2:
+    print("Enter 1 or 2!")
+    difficulty = intparse(input("Choose the type of game (1: Easy; 2: Difficult):"))
 steps = intparse(input("Enter the number of moves: "))
 while steps == "please enter a valid number":
     print(steps)
@@ -57,6 +61,10 @@ for numb in range(0,steps):
     val = intparse(input("Choose your move number "+ str(numb + 1) +" (0 or 1): "))
     while val == "please enter a valid number":
         print(val)
+        val = intparse(input("Choose your move number "+ str(numb + 1) +" (0 or 1): "))
+    #check for value != 1 or 0
+    while val != 1 and val != 0:
+        print("Enter 1 or 0!")
         val = intparse(input("Choose your move number "+ str(numb + 1) +" (0 or 1): "))
     if difficulty == 2:
         difficult = "Difficult"
