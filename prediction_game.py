@@ -1,10 +1,21 @@
-#parsing for integer
+#name: 0 or 1 decision game vs AI
+#description: prediction_game in python using memory based decisions
+#author: Pierre Mulliez
+#Last updated: 03/02/2021
+
 def intparse(value):
+#parsing for integer
         try:
             return int(value)
         except ValueError:
             return  "please enter a valid number"
-
+def varparsing(instr):
+#prompt for re-entry of data if parsing to integer is not possible 
+    number = intparse(input(instr))
+    while intparse(number) == "please enter a valid number":
+        print("please enter a valid number")
+        number = intparse(input(instr))
+    return number
 #linear congruences function
 def congruences(Fsteps,num):
     li = []
@@ -12,38 +23,28 @@ def congruences(Fsteps,num):
             num = (22695477*num+1)%(2**32)
             li.append(num)
     return li
-
-#calculate computer decision given the round 
 def randomdecision(li, iteration):
+#calculate computer decision given the round 
     if li[iteration] <= 2**32/2:
         comput = 0
     else:
         comput = 1
     return comput 
 
+#initialize value for multiple plays 
 play = True 
 totalC = 0
 totalP = 0
 
 while play == True:
-    #declare variable / verify for integer 
-    number = intparse(input("seed: "))
-    while number == "please enter a valid number":
-        print(number)
-        number = intparse(input("seed: "))
+    number = varparsing("seed: ")
     difficult = ""
-    difficulty = intparse(input("Choose the type of game (1: Easy; 2: Difficult):"))
-    while difficulty == "please enter a valid number":
-        print(difficulty)
-        difficulty = intparse(input("Choose the type of game (1: Easy; 2: Difficult):"))
+    difficulty = varparsing("Choose the type of game (1: Easy; 2: Difficult):")
     #check for value != 1 or 2
     while difficulty != 1 and difficulty != 2:
         print("Enter 1 or 2!")
         difficulty = intparse(input("Choose the type of game (1: Easy; 2: Difficult):"))
-    steps = intparse(input("Enter the number of moves: "))
-    while steps == "please enter a valid number":
-        print(steps)
-        steps = intparse(input("Enter the number of moves: "))
+    steps = varparsing("Enter the number of moves: ")
     init = 0
     throw00 = 0
     throw01 = 0
@@ -58,14 +59,10 @@ while play == True:
 
     #linear congruences list
     lis = congruences(steps,number)
-
     for numb in range(0,steps):
         print("---")
         #player number 
-        val = intparse(input("Choose your move number "+ str(numb + 1) +" (0 or 1): "))
-        while val == "please enter a valid number":
-            print(val)
-            val = intparse(input("Choose your move number "+ str(numb + 1) +" (0 or 1): "))
+        val = varparsing("Choose your move number "+ str(numb + 1) +" (0 or 1): ")
         #check for value != 1 or 0
         while val != 1 and val != 0:
             print("Enter 1 or 0!")
